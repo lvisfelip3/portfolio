@@ -1,0 +1,24 @@
+---
+import { GoMoveToTop } from "react-icons/go";
+---
+
+<button class="hidden w-14 h-14 justify-center items-center fixed right-5 bottom-5 rounded-2xl bg-black bg-opacity-20 text-white hover:bg-primary-dark transition-all duration-150">
+    <GoMoveToTop className="w-7 h-7 z-50 stroke-1" />
+</button>
+
+<script>
+    const button = document.querySelector("button");
+    button.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 500) {
+            button.classList.remove("hidden");
+            button.classList.add("flex");
+        } else {
+            button.classList.remove("flex");
+            button.classList.add("hidden");
+        }
+    });
+</script>

@@ -1,0 +1,77 @@
+---
+import Carrousel from "./Carrousel.astro";
+import type { IconType } from "react-icons";
+
+interface Props {
+    title: string;
+    position: string;
+    imgUrl: string[];
+    time: string[];
+    icons: IconType[];
+}
+
+const { title, imgUrl, icons, position, time } = Astro.props;
+---
+
+<article class="flex sm:h-[calc(100vh-300px)] w-full items-center justify-center">
+    <div
+        class="flex flex-wrap sm:grid h-full w-full gap-4 bg-transparent grid-cols-5 grid-rows-5"
+    >
+        <div class="col-span-3 row-span-1 card card-centered">
+            <h1 class="text-3xl text-gray-200 font-semibold">{title}</h1>
+        </div>
+
+        <div class="col-span-2 row-span-1 card card-centered flex-col gap-2">
+            <h1 class="text-3xl text-gray-200 font-semibold">
+                {position}
+            </h1>
+            <div class="flex justify-center items-center gap-1 text-yellow-200 text-opacity-85 font-semibold">
+                <time datetime="MM/YYYY">
+                    {time[0]}
+                </time>
+                <span>-</span>
+                <time datetime="MM/YYYY">
+                    {time[1]}
+                </time>
+            </div>
+        </div>
+
+        <div class="col-span-2 row-span-4 card-blur flex flex-col h-full justify-between">
+            <slot />
+        </div>
+
+        <div class="col-span-3 row-span-3 flex rounded-xl hover:scale-105 transition-transform">
+            <Carrousel imgUrl={imgUrl} />
+        </div>
+
+        <div class="col-span-3 row-span-1 card-centered gap-2 card-blur">
+            {icons.map((Icon) => <Icon className="icon" />)}
+        </div>
+    </div>
+</article>
+
+<style>
+    .card-blur {
+        @apply p-5 sm:p-2 lp:p-6 flex w-full border border-gray-400 border-opacity-10
+        will-change-transform rounded-xl backdrop-blur-lg backdrop-brightness-125 hover:scale-105 transition-transform duration-200;
+    }
+
+    .card {
+        @apply p-5 sm:p-2 lp:p-6 flex w-full border border-gray-400 border-opacity-10
+        will-change-transform rounded-xl backdrop-brightness-125 hover:scale-105 transition-transform duration-200;
+    }
+
+    .card-centered {
+        @apply flex justify-center items-center;
+    }
+
+    .icon {
+        @apply text-gray-200 w-16 h-16 hover:bg-gray-200 hover:text-gray-900 p-1 rounded-md transition duration-150;
+    }
+
+    .scroll-style {
+        scrollbar-color: #dfdfdf transparent;
+        scrollbar-width: thin;
+        scrollbar-button-color: transparent;
+    }
+</style>

@@ -1,0 +1,49 @@
+---
+import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+---
+
+<section
+    class="flex flex-col justify-center gap-5 md:flex-row md:gap-0 md:justify-between items-center w-full h-screen"
+>
+    <article class="flex flex-col blur-style p-8 rounded-3xl animation-scale order-1 md:order-first">
+        <h1 class="text-4xl md:text-6xl text-white font-bold mb-4 pl-2">
+            Luis Vera
+        </h1>
+        <h2 class="text-2xl md:text-3xl text-gray-100 font-medium pl-2">
+            Junior Fullstack Developer
+        </h2>
+        <div class="flex gap-1 mt-4">
+            <a href="https://github.com/lvisfelip3" target="_blank"
+                ><FaGithubSquare
+                    className="text-gray-100 w-16 h-16 hover:bg-gray-200 hover:text-gray-900 p-2 rounded-md transition duration-150"
+                /></a
+            >
+            <a href="https://www.linkedin.com/in/luisvera00/" target="_blank"
+                ><FaLinkedin
+                    className="text-gray-100 w-16 h-16 hover:bg-gray-200 hover:text-gray-900 p-2 rounded-md transition duration-150"
+                /></a
+            >
+        </div>
+    </article>
+    <div class="relative animation-scale">
+        <img
+            class="w-72 h-72 z-50 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full flex justify-center items-center object-cover"
+            src="img/profile2.webp"
+            alt="Foto de Perfil"
+        />
+        <div
+            class="absolute top-0 -z-50 bg-transparent blur-style w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full flex justify-center items-center"
+        >
+        </div>
+    </div>
+</section>
+
+<style>
+    .blur-style {
+        @apply backdrop-blur-md backdrop-brightness-110 border border-gray-400 border-opacity-10;
+    }
+
+    .animation-scale {
+        @apply hover:scale-105 transition-all duration-200 will-change-transform;
+    }
+</style>

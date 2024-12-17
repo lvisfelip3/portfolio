@@ -1,0 +1,192 @@
+---
+import {
+    FaAngular,
+    FaHtml5,
+    FaCss3Alt,
+    FaPhp,
+    FaBootstrap,
+    FaGithubSquare,
+    FaLinkedin,
+    FaExternalLinkAlt,
+} from "react-icons/fa";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { SiJquery, SiDjango, SiTypescript } from "react-icons/si";
+import { IoLogoJavascript } from "react-icons/io5";
+import CardProject from "../components/CardProject.astro";
+
+const angularImg = [
+    "https://plus.unsplash.com/premium_photo-1661290256778-3b821d52c514?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1625722723669-389a6feb52f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
+
+const cctvImg = [
+    "img/projects/cctv-1.jpeg"
+];
+
+const mineducImg = [
+    "https://plus.unsplash.com/premium_photo-1661290256778-3b821d52c514?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1625722723669-389a6feb52f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
+
+const cctvTime = [
+    "06/2024",
+    "Actualidad"
+]
+const camarasTime = [
+    "10/2024",
+    "Actualidad"
+]
+const mineducTime = [
+    "04/2024",
+    "07/2024"
+]
+---
+
+<section class="text-white w-full h-auto">
+    <h1
+        class="text-6xl text-center text-white font-bold card p-8 w-full card-centered bg-black bg-opacity-20 rounded-lg hover:scale-105 transition-all duration-200 mb-16 sm:mb-24"
+    >
+        Projects
+    </h1>
+    <div class="flex flex-col gap-28 sm:gap-36">
+        <CardProject
+            title="Cámaras de Seguridad Fácil"
+            position="Fullstack"
+            time={camarasTime}
+            imgUrl={angularImg}
+            icons={[FaAngular, FaHtml5, SiTypescript, FaPhp, RiTailwindCssFill]}
+        >
+            <div class="flex flex-col gap-4">
+                <p>
+                    Aplicación web <strong class="text-cyan-100">Ecommerce</strong> para la venta de productos según el
+                    cliente.
+                </p>
+                <p>
+                    Construida con <strong class="text-red-200">Angular 18</strong> para el Front End y <strong class="text-indigo-200">PHP</strong> para el
+                    Back End.
+                </p>
+                <ul class="list-disc list-inside mt-3">
+                    <li>JWT</li>
+                    <li>Angular Material 3</li>
+                    <li>Experimental Zoneless</li>
+                    <li>Tailwind</li>
+                </ul>
+            </div>
+            <div class="">
+                <a
+                    class="anchor"
+                    href="https://github.com/lvisfelip3/AngularEcommerceCamaras"
+                    target="_blank"
+                >
+                    <FaGithubSquare className="icons-links" />
+                    <p>Repositorio en GitHub</p>
+                </a>
+                <a
+                    class="anchor"
+                    href="https://camarasdeseguridadfacil.cl"
+                    target="_blank"
+                >
+                    <FaExternalLinkAlt className="icons-links" />
+                    <p>Visitar</p>
+                </a>
+            </div>
+        </CardProject>
+        <CardProject
+            title="Inclusive Group CCTV App"
+            position="Fullstack"
+            time={cctvTime}
+            imgUrl={cctvImg}
+            icons={[FaPhp, IoLogoJavascript, SiJquery, FaBootstrap]}
+        >
+            <div class="flex flex-col gap-4">
+                <p>
+                    Aplicación web de tipo <strong class="text-slate-100">privada</strong> para <strong class="text-cyan-100">administrar y monitorear</strong>
+                    el estado de las cámaras de seguridad de diferentes
+                    clientes.
+                </p>
+                <p>
+                    Construida con <strong class="text-indigo-200">PHP</strong> en su totalidad, usando <strong class="text-sky-300">JQuery</strong> para hacer peticiones
+                    asíncronas al servidor
+                </p>
+                <ul class="list-disc list-inside mt-3">
+                    <li>JQuery</li>
+                    <li>Bootstrap 5</li>
+                    <li>AJAX</li>
+                    <li>Apex Charts</li>
+                </ul>
+            </div>
+            <div class="">
+                <a
+                    class="anchor"
+                    href="https://github.com/lvisfelip3/inclu-cert-cctv"
+                    target="_blank"
+                >
+                    <FaGithubSquare className="icons-links" />
+                    <p>Repositorio en GitHub</p>
+                </a>
+                <a
+                    class="anchor"
+                    href="https://cctv-inclusive.iarcos.cl/site/"
+                    target="_blank"
+                >
+                    <FaExternalLinkAlt className="icons-links" />
+                    <p>Visitar</p>
+                </a>
+            </div>
+        </CardProject>
+        <CardProject
+            title="Portal Mineduc"
+            position="Fullstack"
+            time={mineducTime}
+            imgUrl={mineducImg}
+            icons={[SiDjango, FaHtml5, FaCss3Alt, IoLogoJavascript]}
+        >
+            <div class="flex flex-col gap-4">
+                <p>
+                    Proyecto para la asignatura <strong class="text-orange-200">Portafolio de Título</strong> de la
+                    carrera <strong class="text-pink-100">Analista Programador</strong>.
+                </p>
+                <p>
+                    A modo de aprendizaje, desarrollé un <strong class="text-cyan-100">Portal web</strong> para los
+                    establecimientos estudiantiles de bajos recursos, donde pueden disfrutar de todas sus funciones en un solo lugar.
+                </p>
+                <p>
+                    Desarrollado con el framework <strong class="text-emerald-100">Django 4</strong>, creando la api con
+                    <strong class="text-blue-200">Python</strong>. Front End con <strong class="text-orange-300">HTML</strong>, <strong class="text-sky-300">CSS</strong> y <strong class="text-yellow-200">JavaScript</strong> nativos.
+                </p>
+                <ul class="list-disc list-inside mt-3">
+                    <li>Python</li>
+                    <li>Moderno e Intuitivo</li>
+                </ul>
+            </div>
+            <div class="">
+                <a
+                    class="anchor"
+                    href="https://github.com/lvisfelip3/portalMineduc"
+                    target="_blank"
+                >
+                    <FaGithubSquare className="icons-links" />
+                    <p>Repositorio en GitHub</p>
+                </a>
+                <a class="anchor disabled" href="#">
+                    <FaExternalLinkAlt className="icons-links" />
+                    <p>Visitar</p>
+                </a>
+            </div>
+        </CardProject>
+    </div>
+</section>
+
+<style>
+    .icons-links {
+        @apply h-10 w-10;
+    }
+
+    .anchor {
+        @apply flex items-center gap-2 hover:bg-gray-200 hover:text-gray-900 p-2 rounded-md transition duration-150;
+    }
+
+    .disabled {
+        @apply pointer-events-none opacity-50;
+    }
+</style>

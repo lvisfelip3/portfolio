@@ -1,0 +1,52 @@
+---
+import Button from "../components/Button.astro";
+---
+
+<nav class="fixed top-3 z-10 w-min left-1/2 translate-x-[-50%]">
+    <ul
+        class="flex h-12 md:h-14 justify-center text-lg items-center text-white bg-black bg-opacity-20 rounded-full border border-gray-700 divide-x divide-gray-700 shadow-lg overflow-hidden"
+    >
+        <li><Button text="Home" link="#" /></li>
+        <li><Button text="About" link="#" /></li>
+        <li><Button text="Contact" link="#" /></li>
+    </ul>
+</nav>
+
+<script>
+    const nav = document.querySelector("nav");
+    const ul = document.querySelector("ul");
+
+    function handleScroll() {
+        if (window.scrollY > 500) {
+            nav.classList.add("translate-y-[-40px]", "transition-all", "duration-300");
+            nav.addEventListener("mouseover", handleMouseOver);
+            nav.addEventListener("mouseout", handleMouseOut);
+
+            ul.classList.remove("text-white");
+            ul.classList.add("text-gray-400");
+        } else {
+            nav.classList.remove("translate-y-[-40px]");
+            nav.removeEventListener("mouseover", handleMouseOver);
+            nav.removeEventListener("mouseout", handleMouseOut);
+
+            ul.classList.add("text-white");
+            ul.classList.remove("text-gray-400");
+        }
+    }
+
+    function handleMouseOver() {
+        nav.classList.remove("translate-y-[-40px]");
+        ul.classList.remove("text-gray-400");
+        ul.classList.add("text-white");
+    }
+
+    function handleMouseOut() {
+        setTimeout(() => {
+            nav.classList.add("translate-y-[-40px]");
+            ul.classList.remove("text-white");
+            ul.classList.add("text-gray-400");
+        }, 2500);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+</script>

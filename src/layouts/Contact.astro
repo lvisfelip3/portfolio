@@ -1,0 +1,21 @@
+---
+import { SiGmail } from "react-icons/si";
+import { SiWhatsapp } from "react-icons/si";
+---
+
+<section class="flex flex-col text-white w-full h-screen">
+    <h1 class="text-6xl text-white font-bold mb-4 text-center">Contact</h1>
+    <div class="flex items-center justify-center gap-4">
+        <a
+            href="mailto:luisfeipe.vera23@gmail.com?subject=Consulta sobre portafolio&body=Hola, me gustaría saber más sobre tu trabajo."
+        >
+            <SiGmail className="text-gray-100 w-16 h-16 hover:bg-gray-200 hover:text-gray-900 p-2 rounded-md transition duration-150"/>
+        </a>
+        <a
+            href="https://wa.me/56951070590?text=Hola, me gustará saber más sobre tu trabajo."
+            target="_blank"
+        >
+            <SiWhatsapp className="text-gray-100 w-16 h-16 hover:bg-gray-200 hover:text-gray-900 p-2 rounded-md transition duration-150"/>
+        </a>
+    </div>
+</section>

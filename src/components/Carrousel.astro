@@ -1,0 +1,33 @@
+---
+import { Carousel } from 'webcoreui/astro';
+
+interface Props {
+    imgUrl: string[];
+}
+
+const { imgUrl } = Astro.props;
+---
+
+<!-- <div
+    class="w-full h-auto flex overflow-x-scroll snap-x snap-mandatory scroll-style"
+>
+    {
+        imgUrl.map((img) => (
+            <img src={img} class="w-auto snap-center h-auto rounded-lg" />
+        ))
+    }
+</div> -->
+
+<Carousel 
+    items={imgUrl.length}
+    effect="saturate"
+>
+
+    {
+        imgUrl.map((img) => (
+            <li data-active="true">
+                <img src={img} class="w-full h-full rounded-lg object-cover" draggable="false"/>
+            </li>
+        ))
+    }
+</Carousel>
