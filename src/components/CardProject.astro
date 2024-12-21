@@ -5,9 +5,15 @@ import type { IconType } from "react-icons";
 interface Props {
     title: string;
     position: string;
-    imgUrl: string[];
+    imgUrl: {
+        url: string;
+        alt: string;
+    }[];
     time: string[];
-    icons: IconType[];
+    icons: {
+        icon: IconType;
+        tooltip: string;
+    }[];
 }
 
 const { title, imgUrl, icons, position, time } = Astro.props;
@@ -17,9 +23,9 @@ const { title, imgUrl, icons, position, time } = Astro.props;
     <div
         class="flex flex-wrap sm:grid h-full w-full gap-4 bg-transparent grid-cols-5 grid-rows-5"
     >
-        <div class="col-span-3 row-span-1 card card-centered">
+        <header class="col-span-3 row-span-1 card card-centered">
             <h1 class="text-3xl text-gray-200 font-semibold">{title}</h1>
-        </div>
+        </header>
 
         <div class="col-span-2 row-span-1 card card-centered flex-col gap-2">
             <h1 class="text-3xl text-gray-200 font-semibold">
@@ -40,12 +46,16 @@ const { title, imgUrl, icons, position, time } = Astro.props;
             <slot />
         </div>
 
-        <div class="col-span-3 row-span-3 flex rounded-xl hover:scale-105 transition-transform">
-            <Carrousel imgUrl={imgUrl} />
+        <div class="col-span-3 row-span-3 flex rounded-xl overflow-hidden">
+            <Carrousel images={imgUrl} />
         </div>
 
         <div class="col-span-3 row-span-1 card-centered gap-2 card-blur">
-            {icons.map((Icon) => <Icon className="icon" />)}
+            {icons.map(
+                (Icon) => 
+                <Icon.icon className="icon" data-tooltip={Icon.tooltip}/>
+                <span class="sr-only">{Icon.tooltip}</span>
+            )}
         </div>
     </div>
 </article>

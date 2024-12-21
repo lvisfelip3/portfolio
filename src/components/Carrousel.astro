@@ -1,33 +1,58 @@
 ---
-import { Carousel } from 'webcoreui/astro';
+import '@splidejs/splide/css';
 
 interface Props {
-    imgUrl: string[];
+    images: {
+        url: string;
+        alt: string;
+    }[];
 }
 
-const { imgUrl } = Astro.props;
+const { images } = Astro.props;
 ---
 
-<!-- <div
-    class="w-full h-auto flex overflow-x-scroll snap-x snap-mandatory scroll-style"
->
-    {
-        imgUrl.map((img) => (
-            <img src={img} class="w-auto snap-center h-auto rounded-lg" />
-        ))
-    }
-</div> -->
+<section class="splide" aria-label="Image Gallery">
+    <div class="splide__track">
+        <ul class="splide__list">
+            {images.map((image) => (
+                <li class="splide__slide">
+                    <img
+                        src={image.url}
+                        alt={image.alt}
+                        class="w-full h-full object-cover rounded-lg"
+                        decoding="async"
+                    />
+                </li>
+            ))}
+        </ul>
+    </div>
+</section>
 
-<Carousel 
-    items={imgUrl.length}
-    effect="saturate"
->
+<script>
+    import Splide from '@splidejs/splide';
+    import type { Options } from '@splidejs/splide';
 
-    {
-        imgUrl.map((img) => (
-            <li data-active="true">
-                <img src={img} class="w-full h-full rounded-lg object-cover" draggable="false"/>
-            </li>
-        ))
-    }
-</Carousel>
+    const options: Options = {
+        type: 'loop',
+        perPage: 1,
+        width: '100%',
+        autoplay: false,
+        lazyLoad: 'nearby',
+        breakpoints: {
+            640: { perPage: 1 },
+            768: { perPage: 1 },
+            1024: { perPage: 1 },
+        },
+    };
+
+    document.addEventListener('astro:page-load', () => {
+        const splideElements = document.querySelectorAll('.splide');
+
+        splideElements.forEach((element) => {
+            if (element instanceof HTMLElement) {
+                const splide = new Splide(element, options);
+                splide.mount();
+            }
+        });
+    });
+</script>

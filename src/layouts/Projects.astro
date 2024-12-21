@@ -15,28 +15,76 @@ import { IoLogoJavascript } from "react-icons/io5";
 import CardProject from "../components/CardProject.astro";
 
 const angularImg = [
-    "img/projects/camara-1.webp",
-    "img/projects/camara-2.webp",
-    "img/projects/camara-3.webp",
-    "img/projects/camara-4.webp",
-    "img/projects/camara-5.webp",
-    "img/projects/camara-6.webp",
-    "img/projects/camara-7.webp",
+    {
+        url:"img/projects/camara-1.webp",
+        alt:"Imagen Cámaras de Seguridad 1"
+    },
+    {
+        url:"img/projects/camara-2.webp",
+        alt:"Imagen Cámaras de Seguridad 2"
+    },
+    {
+        url:"img/projects/camara-3.webp",
+        alt:"Imagen Cámaras de Seguridad 3"
+    },
+    {
+        url:"img/projects/camara-4.webp",
+        alt:"Imagen Cámaras de Seguridad 4"
+    },
+    {
+        url:"img/projects/camara-5.webp",
+        alt:"Imagen Cámaras de Seguridad 5" 
+    },
+    {
+        url:"img/projects/camara-6.webp",
+        alt:"Imagen Cámaras de Seguridad 6"
+    },
+    {
+        url:"img/projects/camara-7.webp",
+        alt:"Imagen Cámaras de Seguridad 7"
+    }
 ];
 
 const cctvImg = [
-    "img/projects/cctv-1.webp",
-    "img/projects/cctv-2.webp",
-    "img/projects/cctv-3.webp"
+    {
+        url:"img/projects/cctv-1.webp",
+        alt:"Imagen CCTV 1"
+    },
+    {
+        url:"img/projects/cctv-2.webp",
+        alt:"Imagen CCTV 2"
+    },
+    {
+        url:"img/projects/cctv-3.webp",
+        alt:"Imagen CCTV 3"
+    }
 ];
 
 const mineducImg = [
-    "img/projects/mineduc-1.webp",
-    "img/projects/mineduc-2.webp",
-    "img/projects/mineduc-3.webp",
-    "img/projects/mineduc-4.webp",
-    "img/projects/mineduc-5.webp",
-    "img/projects/mineduc-6.webp",
+    {
+        url:"img/projects/mineduc-1.webp",
+        alt:"Imagen Portal Mineduc 1"
+    },
+    {
+        url:"img/projects/mineduc-2.webp",
+        alt:"Imagen Portal Mineduc 2"
+    },
+    {
+        url:"img/projects/mineduc-3.webp",
+        alt:"Imagen Portal Mineduc 3"
+    },
+    {
+        url:"img/projects/mineduc-4.webp",
+        alt:"Imagen Portal Mineduc 4"
+    },
+    {
+        url:"img/projects/mineduc-5.webp",
+        alt:"Imagen Portal Mineduc 5"
+    },
+    {
+        url:"img/projects/mineduc-6.webp",
+        alt:"Imagen Portal Mineduc 6"
+    }
 ];
 
 const cctvTime = [
@@ -50,6 +98,63 @@ const camarasTime = [
 const mineducTime = [
     "04/2024",
     "07/2024"
+]
+
+const cctvIcons = [
+    {
+        icon:FaPhp,
+        tooltip:"PHP"
+    }, 
+    {
+        icon:IoLogoJavascript,
+        tooltip:"JavaScript"
+    }, 
+    {
+        icon:SiJquery,
+        tooltip:"JQuery"
+    }, 
+    {
+        icon:FaBootstrap,
+        tooltip:"Bootstrap 5"
+    }
+]
+
+const camarasIcons = [
+    {
+        icon:FaAngular,
+        tooltip:"Angular 18"
+    }, 
+    {
+        icon:FaPhp,
+        tooltip:"PHP"
+    }, 
+    {
+        icon:RiTailwindCssFill,
+        tooltip:"Tailwind"
+    },
+    {
+        icon:SiTypescript,
+        tooltip:"Typescript"
+    }
+]
+
+const mineducIcons = [
+    {
+        icon:SiDjango,
+        tooltip:"Django 4"
+    }, 
+    {
+        icon:FaHtml5,
+        tooltip:"HTML"
+    }, 
+    {
+        icon:FaCss3Alt,
+        tooltip:"CSS"
+    }, 
+    {
+        icon:IoLogoJavascript,
+        tooltip:"JavaScript"
+    }
 ]
 ---
 
@@ -65,7 +170,7 @@ const mineducTime = [
             position="Fullstack"
             time={camarasTime}
             imgUrl={angularImg}
-            icons={[FaAngular, FaHtml5, SiTypescript, FaPhp, RiTailwindCssFill]}
+            icons={camarasIcons}
         >
             <div class="flex flex-col gap-4">
                 <p>
@@ -108,7 +213,7 @@ const mineducTime = [
             position="Fullstack"
             time={cctvTime}
             imgUrl={cctvImg}
-            icons={[FaPhp, IoLogoJavascript, SiJquery, FaBootstrap]}
+            icons={cctvIcons}
         >
             <div class="flex flex-col gap-4">
                 <p>
@@ -151,7 +256,7 @@ const mineducTime = [
             position="Fullstack"
             time={mineducTime}
             imgUrl={mineducImg}
-            icons={[SiDjango, FaHtml5, FaCss3Alt, IoLogoJavascript]}
+            icons={mineducIcons}
         >
             <div class="flex flex-col gap-4">
                 <p>
