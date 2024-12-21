@@ -22,19 +22,7 @@ import { ViewTransitions } from 'astro:transitions';
 		<slot />
 	</body>
 </html>
-<style is:global lang="scss">
-	@use 'webcoreui/styles' as *;
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
+<style is:global>
 	html {
 		font-family: "Montserrat",system-ui, sans-serif;
 		background: url("/img/background-portfolio3.webp") no-repeat center center / cover fixed;
