@@ -12,6 +12,7 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import { SiJquery, SiDjango, SiTypescript } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import CardProject from "@components/CardProject.astro";
+import ProjectsNav from "@components/ProjectsNav.astro";
 
 const angularImg = [
     {
@@ -157,7 +158,8 @@ const mineducIcons = [
 ]
 ---
 
-<section class="text-white w-full h-auto">
+<section class="text-white w-full h-min relative">
+    <ProjectsNav />
     <h1
         class="text-6xl text-center text-white font-bold card p-8 w-full card-centered backdrop-brightness-125 border border-gray-400 border-opacity-10 rounded-lg hover:scale-105 transition-all duration-200 mb-16 sm:mb-24"
     >
@@ -165,6 +167,7 @@ const mineducIcons = [
     </h1>
     <div class="flex flex-col gap-28 sm:gap-36">
         <CardProject
+            id="proyecto1"
             title="Cámaras de Seguridad Fácil"
             position="Fullstack"
             time={camarasTime}
@@ -208,6 +211,7 @@ const mineducIcons = [
             </div>
         </CardProject>
         <CardProject
+            id="proyecto2"
             title="Inclusive Group CCTV App"
             position="Fullstack"
             time={cctvTime}
@@ -251,6 +255,7 @@ const mineducIcons = [
             </div>
         </CardProject>
         <CardProject
+            id="proyecto3"
             title="Portal Mineduc"
             position="Fullstack"
             time={mineducTime}

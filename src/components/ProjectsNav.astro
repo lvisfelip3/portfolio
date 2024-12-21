@@ -1,0 +1,87 @@
+---
+---
+
+<nav class="navButtons sticky z-10 ml-[-20px] sm:ml-[-60px] md:ml-[-70px] top-[40vh] flex flex-col gap-0 w-min transition-all">
+    <button class="proyectButton rounded-t-xl button1">
+        1
+        <span class="sr-only">
+            Ir al proyecto 1
+        </span>
+    </button>
+    <button class="proyectButton button2">
+        2
+        <span class="sr-only">
+            Ir al proyecto 2
+        </span>
+    </button>
+    <button class="proyectButton rounded-b-xl button3">
+        3
+        <span class="sr-only">
+            Ir al proyecto 3
+        </span>
+    </button>
+</nav>
+
+<style>
+    .proyectButton{
+        @apply h-12 w-12 backdrop-brightness-125 border border-gray-400 border-opacity-30 hover:scale-105 transition-all duration-200 font-bold text-lg;
+    }
+
+    .activeButton{
+        @apply bg-slate-200 text-gray-900 scale-105;
+    }
+</style>
+
+<script>
+    const button1 = document.querySelector(".button1");
+    const button2 = document.querySelector(".button2");
+    const button3 = document.querySelector(".button3");
+
+    button1.addEventListener("click", () => {
+        document.querySelector("#proyecto1").scrollIntoView({ behavior: "smooth" });
+    });
+
+    button2.addEventListener("click", () => {
+        document.querySelector("#proyecto2").scrollIntoView({ behavior: "smooth" });
+    });
+
+    button3.addEventListener("click", () => {
+        document.querySelector("#proyecto3").scrollIntoView({ behavior: "smooth" });
+    });
+
+    const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                if (entry.target.id === "proyecto1") {
+                    button1.classList.add("activeButton");
+                    button2.classList.remove("activeButton");
+                    button3.classList.remove("activeButton");
+                } else if (entry.target.id === "proyecto2") {
+                    button2.classList.add("activeButton");
+                    button1.classList.remove("activeButton");
+                    button3.classList.remove("activeButton");
+                } else if (entry.target.id === "proyecto3") {
+                    button3.classList.add("activeButton");
+                    button1.classList.remove("activeButton");
+                    button2.classList.remove("activeButton");
+                } else {
+                    button1.classList.remove("activeButton");
+                    button2.classList.remove("activeButton");
+                    button3.classList.remove("activeButton");
+                }
+            }
+        });
+    }, options);
+
+    document.querySelectorAll(".project-section").forEach((section) => {
+        observer.observe(section);
+    });
+
+
+</script>
