@@ -47,7 +47,7 @@ const { id, title, imgUrl, icons, position, time } = Astro.props;
             <slot />
         </div>
 
-        <div class="col-span-3 row-span-3 flex rounded-xl overflow-hidden">
+        <div class="col-span-3 row-span-3 h-full flex rounded-xl overflow-hidden">
             <Carrousel images={imgUrl} />
         </div>
 
