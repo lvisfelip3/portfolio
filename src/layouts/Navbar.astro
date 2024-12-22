@@ -2,51 +2,27 @@
 import Button from "@components/Button.astro";
 ---
 
-<nav class="fixed top-3 z-10 w-min left-1/2 translate-x-[-50%]">
-    <ul
-        class="flex h-12 md:h-14 justify-center text-lg items-center text-white bg-black bg-opacity-20 rounded-full border border-gray-700 divide-x divide-gray-700 shadow-lg overflow-hidden"
-    >
-        <li><Button text="Home" link="#" /></li>
-        <li><Button text="About" link="#" /></li>
-        <li><Button text="Contact" link="#" /></li>
-    </ul>
+<nav class="fixed top-0 z-50 h-14 md:h-20 w-full flex justify-center items-center bg-transparent text-white transition duration-500 ease-out">
+    <Button text="Inicio" />
+    <Button text="Proyectos" />
+    <Button text="Contacto"/>
 </nav>
 
+<style>
+    .onScroll{
+        @apply border-b border-gray-400 border-opacity-25 backdrop-blur-sm backdrop-brightness-50;
+    }
+</style>
+
 <script>
-    const nav = document.querySelector("nav");
-    const ul = document.querySelector("ul");
-
-    function handleScroll() {
-        if (window.scrollY > 500) {
-            nav.classList.add("translate-y-[-40px]", "transition-all", "duration-300");
-            nav.addEventListener("mouseover", handleMouseOver);
-            nav.addEventListener("mouseout", handleMouseOut);
-
-            ul.classList.remove("text-white");
-            ul.classList.add("text-gray-400");
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 10) {
+            nav.classList.add('onScroll');
+            nav.classList.remove('bg-transparent');
         } else {
-            nav.classList.remove("translate-y-[-40px]");
-            nav.removeEventListener("mouseover", handleMouseOver);
-            nav.removeEventListener("mouseout", handleMouseOut);
-
-            ul.classList.add("text-white");
-            ul.classList.remove("text-gray-400");
+            nav.classList.remove('onScroll');
+            nav.classList.add('bg-transparent');
         }
-    }
-
-    function handleMouseOver() {
-        nav.classList.remove("translate-y-[-40px]");
-        ul.classList.remove("text-gray-400");
-        ul.classList.add("text-white");
-    }
-
-    function handleMouseOut() {
-        setTimeout(() => {
-            nav.classList.add("translate-y-[-40px]");
-            ul.classList.remove("text-white");
-            ul.classList.add("text-gray-400");
-        }, 2500);
-    }
-
-    window.addEventListener("scroll", handleScroll);
+    });
 </script>
