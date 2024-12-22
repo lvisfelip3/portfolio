@@ -1,7 +1,7 @@
 ---
 ---
 
-<nav class="navButtons sticky z-10 ml-[-20px] sm:ml-[-60px] md:ml-[-70px] top-[40vh] flex flex-col gap-0 w-min transition-all">
+<nav class="navButtons sticky z-10 top-[40vh] flex flex-col gap-0 w-min transition-all">
     <button class="proyectButton rounded-t-xl button1">
         1
         <span class="sr-only">
@@ -24,7 +24,7 @@
 
 <style>
     .proyectButton{
-        @apply h-12 w-12 backdrop-brightness-125 border border-gray-400 border-opacity-30 hover:scale-105 transition-all duration-200 font-bold text-lg;
+        @apply w-8 h-12 sm:w-12 backdrop-brightness-125 border border-gray-400 border-opacity-30 hover:scale-105 transition-all duration-200 font-bold md:text-lg;
     }
 
     .activeButton{
@@ -37,16 +37,24 @@
     const button2 = document.querySelector(".button2");
     const button3 = document.querySelector(".button3");
 
+    const scrollWithOffset = (element, offset = 0) => {
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+            top: elementPosition + offset,
+            behavior: "smooth",
+        });
+    };
+
     button1.addEventListener("click", () => {
-        document.querySelector("#proyecto1").scrollIntoView({ behavior: "smooth" });
+        scrollWithOffset(document.querySelector("#proyecto1"), -100);
     });
 
     button2.addEventListener("click", () => {
-        document.querySelector("#proyecto2").scrollIntoView({ behavior: "smooth" });
+        scrollWithOffset(document.querySelector("#proyecto2"), -100);
     });
 
     button3.addEventListener("click", () => {
-        document.querySelector("#proyecto3").scrollIntoView({ behavior: "smooth" });
+        scrollWithOffset(document.querySelector("#proyecto3"), -100);
     });
 
     const options = {
