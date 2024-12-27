@@ -1,0 +1,67 @@
+---
+import {FaGithubSquare, FaLinkedin} from "react-icons/fa"
+
+interface Props {
+    company: string;
+    manager: {
+        name: string;
+        email: string;
+        img: string;
+    },
+    links?: {
+        linkedin:string,
+        github:string,
+        companyLink?:string
+    }
+}
+
+const { company, manager, links } = Astro.props;
+---
+
+<article class="w-full flex flex-col items-start gap-4 md:gap-8 text-gray-100 rounded-lg p-6 backdrop-blur-lg backdrop-brightness-125 border border-gray-400 border-opacity-10 hover:scale-105 transition-all duration-200">
+    <header class="flex gap-4 items-center justify-start w-full">
+        <img 
+            src={manager.img} 
+            alt={'Foto de ' + manager.name} 
+            class="rounded-full object-cover w-20 h-20"
+        />
+        <div class="flex items-center flex-wrap justify-between w-full">
+            <h1 class="text-3xl font-medium">{manager.name}</h1>
+            <a 
+                href={links.companyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-200 font-semibold underline underline-offset-4 decoration-gray-200 hover:decoration-white hover:decoration-2 hover:text-white transition-all duration-200"
+            >
+                {company}
+            </a>
+        </div>
+    </header>
+    <main>
+        <slot />
+    </main>
+    <footer class="flex items-center gap-3">
+        <a href={links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-tooltip={`LinkedIn de ${manager.name}`}
+        >
+            <span class="sr-only">Linkedin de {manager.name}</span>
+            <FaLinkedin className="icons"/>
+        </a>
+        <a href={links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-tooltip={`Github de ${manager.name}`}
+        >
+            <span class="sr-only">Github de {manager.name}</span>
+            <FaGithubSquare className="icons"/>
+        </a>
+    </footer>
+</article>
+
+<style>
+    .icons {
+        @apply h-12 w-12 text-gray-100 hover:bg-gray-100 hover:text-gray-900 hover:scale-105 rounded-lg transition-all duration-200;
+    }
+</style>
