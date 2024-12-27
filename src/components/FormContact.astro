@@ -1,0 +1,53 @@
+<article
+    class="w-full flex flex-col items-center gap-4 md:gap-8 text-gray-100 rounded-lg p-6 backdrop-blur-lg backdrop-brightness-125 border border-gray-400 border-opacity-10"
+>
+    <header class="flex flex-col items-center gap-5">
+        <h3>Puedes escribirme al siguiente correo:</h3>
+        <span> luisfeipe.vera23@gmail.com </span>
+        <span> o </span>
+    </header>
+    <main class="w-full md:px-56">
+        <form class="flex flex-col gap-4 w-full">
+            <label>Nombre
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                />
+            </label>
+            <label>Correo
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="example@email.com"
+                />
+            </label>
+            <label>Mensaje
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="3"
+                ></textarea>
+            </label>
+            <button
+                type="submit"
+                class="p-2 bg-gray-400 text-gray-900 rounded-md hover:bg-gray-200 hover:text-gray-900 transition duration-150"
+            >
+                Enviar
+            </button>
+        </form>
+    </main>
+    <footer></footer>
+</article>
+
+<style>
+
+    label{
+        @apply w-full flex flex-col gap-1;
+    }
+
+    input, textarea{
+        @apply p-2 bg-gray-800 border-gray-400 rounded-lg  border-opacity-10 focus:border-opacity-10 transition-all duration-200;
+    }
+</style>
