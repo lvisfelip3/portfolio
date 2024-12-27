@@ -5,7 +5,7 @@ import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 <section
     class="flex flex-col justify-center gap-5 md:flex-row md:gap-0 md:justify-between items-center w-full h-screen"
 >
-    <article class="flex flex-col blur-style p-8 rounded-3xl animation-scale order-1 md:order-first">
+    <article class="flex flex-col blur-style p-8 rounded-3xl order-1 md:order-first">
         <h1 class="text-4xl md:text-6xl text-white font-bold mb-4 pl-2">
             Luis Vera
         </h1>
@@ -27,7 +27,7 @@ import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
             >
         </div>
     </article>
-    <div class="relative animation-scale">
+    <div class="relative">
         <img
             class="w-72 h-72 z-50 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full flex justify-center items-center object-cover"
             src="img/profile2.webp"
@@ -42,11 +42,7 @@ import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 
 <style>
     .blur-style {
-        @apply backdrop-blur-md backdrop-brightness-110 border border-gray-400 border-opacity-10;
-    }
-
-    .animation-scale {
-        @apply hover:scale-105 transition-all duration-200 will-change-transform;
+        @apply backdrop-blur-md backdrop-brightness-125 border border-gray-400 border-opacity-10 hover:border-opacity-30 transition-all duration-200;
     }
 </style>
 

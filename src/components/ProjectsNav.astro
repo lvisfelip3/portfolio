@@ -1,7 +1,7 @@
 ---
 ---
 
-<nav class="navButtons sticky z-10 top-[40vh] flex flex-col gap-0 w-min transition-all">
+<nav class="border border-gray-400 border-opacity-30 divide-y divide-gray-400 divide-opacity-30 rounded-t-xl rounded-b-xl sticky z-10 top-[40vh] flex flex-col gap-0 w-min">
     <button class="proyectButton rounded-t-xl button1">
         1
         <span class="sr-only">
@@ -24,11 +24,11 @@
 
 <style>
     .proyectButton{
-        @apply w-8 h-12 sm:w-12 backdrop-brightness-125 border border-gray-400 border-opacity-30 hover:scale-105 transition-all duration-200 font-bold md:text-lg;
+        @apply w-8 h-min py-3 sm:w-12 backdrop-brightness-125 font-bold md:text-lg hover:bg-gray-400 hover:bg-opacity-50 transition-all duration-200;
     }
 
     .activeButton{
-        @apply bg-slate-200 text-gray-900 scale-105;
+        @apply bg-slate-200 hover:bg-slate-200 hover:bg-opacity-100 text-gray-900 scale-105;
     }
 </style>
 

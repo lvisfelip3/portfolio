@@ -63,14 +63,17 @@ const { id, title, imgUrl, icons, position, time } = Astro.props;
 
 <style>
     .card-blur {
-        @apply p-5 sm:p-2 lp:p-6 flex w-full border border-gray-400 border-opacity-10
-        will-change-transform rounded-xl backdrop-blur-lg backdrop-brightness-125 hover:scale-105 transition-transform duration-200;
+        @apply p-5 sm:p-2 lp:p-6 flex w-full rounded-xl backdrop-blur-lg backdrop-brightness-125 borderCard;
     }
 
     .card {
-        @apply p-5 sm:p-2 lp:p-6 flex w-full border border-gray-400 border-opacity-10
-        will-change-transform rounded-xl backdrop-brightness-125 hover:scale-105 transition-transform duration-200;
+        @apply p-5 lp:p-6 flex w-full text-center 
+        will-change-transform rounded-xl backdrop-brightness-125 borderCard;
     }
+
+    .borderCard {
+		@apply border border-gray-400 border-opacity-10 hover:border-opacity-30 transition-all duration-200;
+	}
 
     .card-centered {
         @apply flex justify-center items-center;

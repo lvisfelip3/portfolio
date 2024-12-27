@@ -159,12 +159,12 @@ const mineducIcons = [
 ---
 <section class="text-white w-full h-min relative">
     <h1
-        class="text-4xl md:text-6xl text-center text-white font-bold card p-8 w-full backdrop-brightness-125 border border-gray-400 border-opacity-10 rounded-lg hover:scale-105 transition-all duration-200 mb-16 sm:mb-24"
+        class="tittles"
     >
         Proyectos
     </h1>
     <div class="projects">
-        <div class="ml-[-40px] sm:ml-[-60px] md:ml-[-70px] w-min border border-gray-400 border-opacity-10 backdrop-brightness-125 rounded-lg">
+        <div class="ml-[-40px] sm:ml-[-60px] md:ml-[-70px] w-min border border-gray-400 border-opacity-10 backdrop-brightness-125 rounded-lg hover:border-opacity-20">
             <ProjectsNav />
         </div>
         <div class="flex flex-col gap-28 sm:gap-36">
@@ -275,7 +275,7 @@ const mineducIcons = [
                     </p>
                     <p>
                         Desarrollado con el framework <strong class="text-emerald-100">Django 4</strong>, creando la api con
-                        <strong class="text-blue-200">Python</strong>. Front End con <strong class="text-orange-300">HTML</strong>, <strong class="text-sky-300">CSS</strong> y <strong class="text-yellow-200">JavaScript</strong> nativos.
+                        <strong class="text-blue-200">Python</strong>. Front End con <strong class="text-orange-200">HTML</strong>, <strong class="text-sky-200">CSS</strong> y <strong class="text-yellow-200">JavaScript</strong> nativos.
                     </p>
                     <ul class="list-disc list-inside mt-3">
                         <li>Python</li>
@@ -307,11 +307,11 @@ const mineducIcons = [
     }
 
     .anchor {
-        @apply flex items-center gap-2 hover:bg-gray-200 hover:text-gray-900 p-2 rounded-md transition duration-150;
+        @apply flex items-center gap-2 hover:bg-gray-400 hover:bg-opacity-50 active:bg-gray-200 active:text-gray-900 p-2 rounded-lg transition-all duration-200;
     }
 
     .disabled {
-        @apply pointer-events-none opacity-50;
+        @apply pointer-events-none opacity-45;
     }
 
     .projects {
