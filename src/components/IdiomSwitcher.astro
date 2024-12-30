@@ -1,0 +1,75 @@
+---
+import { IoLanguage } from "react-icons/io5";
+import { languages, defaultLanguage } from "@/i18n/ui";
+
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+<details 
+    name="idiom" 
+    id="idiom"
+    class="bg-transparent p-3 flex flex-col gap-2 cursor-pointer w-min"
+    >
+    <summary class="flex gap-2 justify-between items-center rounded-lg px-2 borderSelect">
+        <IoLanguage className="text-gray-100 w-8 h-8 sm:w-9 sm:h-9 p-1 rounded-lg" />
+        <span class="sr-only sm:not-sr-only">{t("nav.idiom")}</span>
+    </summary>
+    <div class="flex flex-col gap-2 bg-gray-800 rounded-lg p-2">
+    {
+        Object.entries(languages).map(([lang, label]) => (
+            <a 
+                href={ lang === defaultLanguage ? "/" : `/${lang}`}
+                class="anchor"
+            >
+                {label}
+            </a>
+        ))
+    }
+    </div>
+</details>
+
+<style>
+    option{
+        @apply bg-gray-900 p-3
+    }
+
+    .selectedLanguage {
+        @apply bg-gray-600 text-white
+    }
+
+    .borderSelect{
+        @apply border border-gray-400 border-opacity-30 hover:border-opacity-50 transition-all duration-200
+    }
+
+    .anchor {
+        @apply text-sm sm:text-base hover:bg-gray-100 hover:text-gray-900 p-1 sm:p-2 rounded-lg transition-all duration-200;
+    }
+
+    details {
+        position: relative;
+    }
+
+    details[open] > div {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+    }
+</style>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const detailsElement: HTMLDetailsElement = document.querySelector("#idiom");
+
+        document.addEventListener("click", (event) => {
+            const target = event.target as HTMLDetailsElement;
+
+            if (!detailsElement.contains(target)) {
+                detailsElement.open = false;
+            }
+        });
+    });
+</script>

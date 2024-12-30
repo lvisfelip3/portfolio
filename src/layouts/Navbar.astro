@@ -1,11 +1,20 @@
 ---
-import Button from "@components/Button.astro";
+import Button from "@components/Button.astro"
+import IdiomSwitcher from "@components/IdiomSwitcher.astro"
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
-<nav class="fixed top-0 z-50 h-14 md:h-20 w-full flex justify-center items-center bg-transparent text-white transition duration-500 ease-out">
-    <Button text="Inicio" />
-    <Button text="Proyectos" />
-    <Button text="Contacto"/>
+<nav class="fixed top-0 z-50 h-14 md:h-20 w-full flex justify-between items-center bg-transparent text-white transition duration-500 ease-out lg:px-[290px] md:px-32 sm:px-24 px-4">
+    <div></div>
+    <div class="flex justify-center gap-2">
+        <Button text={t("nav.home")} />
+        <Button text={t("nav.projects")} />
+        <Button text={t("nav.contact")}/>
+    </div>
+    <IdiomSwitcher />
 </nav>
 
 <style>
