@@ -1,9 +1,14 @@
 ---
 import CardReferences from "@components/CardReferences.astro"
+
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <section class="flex flex-col text-white w-full h-min mt-40">
-    <h1 class="tittles">Referencias</h1>
+    <h1 class="tittles">{t('references.title')}</h1>
     <CardReferences
         company="IArcos.cl"
         manager={{

@@ -2,11 +2,15 @@
 // import { SiGmail } from "react-icons/si";
 // import { SiWhatsapp } from "react-icons/si";
 import FormContact from "@/components/FormContact.astro"
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <section class="flex flex-col text-white w-full h-screen mt-40 mb-96">
     <h1 class="tittles">
-        Contacto
+        {t('contact.title')}
     </h1>
     <FormContact />
 </section>

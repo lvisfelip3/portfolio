@@ -1,21 +1,28 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
 <article
     class="w-full flex flex-col items-center gap-4 md:gap-8 text-gray-100 rounded-lg p-6 backdrop-blur-lg backdrop-brightness-125 border border-gray-400 border-opacity-10 hover:border-opacity-30 transition-all duration-200"
 >
     <header class="flex flex-col items-center gap-5">
-        <h3>Puedes escribirme al siguiente correo:</h3>
+        <h3>{t('contact.form.title')}</h3>
         <span> luisfeipe.vera23@gmail.com </span>
-        <span> o </span>
+        <span> { lang === "es" ? "o" : "or"} </span>
     </header>
     <main class="w-full md:px-56">
         <form class="flex flex-col gap-4 w-full">
-            <label>Nombre
+            <label>{t('contact.form.name')}
                 <input
                     type="text"
                     id="name"
                     name="name"
                 />
             </label>
-            <label>Correo
+            <label>Email
                 <input
                     type="email"
                     id="email"
@@ -23,7 +30,7 @@
                     placeholder="example@email.com"
                 />
             </label>
-            <label>Mensaje
+            <label>{t('contact.form.message')}
                 <textarea
                     id="message"
                     name="message"
@@ -34,7 +41,7 @@
                 type="submit"
                 class="p-2 bg-gray-400 text-gray-900 rounded-md hover:bg-gray-200 hover:text-gray-900 transition duration-150"
             >
-                Enviar
+                {t('contact.form.send')}
             </button>
         </form>
     </main>

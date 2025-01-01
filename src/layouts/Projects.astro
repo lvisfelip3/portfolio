@@ -13,87 +13,93 @@ import { SiJquery, SiDjango, SiTypescript } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import CardProject from "@components/CardProject.astro";
 import ProjectsNav from "@components/ProjectsNav.astro";
+import HTMLRenderer from "@/i18n/HTMLRenderer.astro";
+
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 
 const angularImg = [
     {
         url:"img/projects/camara-1.webp",
-        alt:"Imagen Cámaras de Seguridad 1"
+        alt:t('camaras.alt') + " 1"
     },
     {
         url:"img/projects/camara-2.webp",
-        alt:"Imagen Cámaras de Seguridad 2"
+        alt:t('camaras.alt') + " 2"
     },
     {
         url:"img/projects/camara-3.webp",
-        alt:"Imagen Cámaras de Seguridad 3"
+        alt:t('camaras.alt') + " 3"
     },
     {
         url:"img/projects/camara-4.webp",
-        alt:"Imagen Cámaras de Seguridad 4"
+        alt:t('camaras.alt') + " 4"
     },
     {
         url:"img/projects/camara-5.webp",
-        alt:"Imagen Cámaras de Seguridad 5" 
+        alt:t('camaras.alt') + " 5" 
     },
     {
         url:"img/projects/camara-6.webp",
-        alt:"Imagen Cámaras de Seguridad 6"
+        alt:t('camaras.alt') + " 6"
     },
     {
         url:"img/projects/camara-7.webp",
-        alt:"Imagen Cámaras de Seguridad 7"
+        alt:t('camaras.alt') + " 7"
     }
 ];
 
 const cctvImg = [
     {
         url:"img/projects/cctv-1.webp",
-        alt:"Imagen CCTV 1"
+        alt: t('cctv.alt') + " 1"
     },
     {
         url:"img/projects/cctv-2.webp",
-        alt:"Imagen CCTV 2"
+        alt: t('cctv.alt') + " 2"
     },
     {
         url:"img/projects/cctv-3.webp",
-        alt:"Imagen CCTV 3"
+        alt: t('cctv.alt') + " 3"
     }
 ];
 
 const mineducImg = [
     {
         url:"img/projects/mineduc-1.webp",
-        alt:"Imagen Portal Mineduc 1"
+        alt:t('mineduc.alt') + " 1"
     },
     {
         url:"img/projects/mineduc-2.webp",
-        alt:"Imagen Portal Mineduc 2"
+        alt:t('mineduc.alt') + " 2"
     },
     {
         url:"img/projects/mineduc-3.webp",
-        alt:"Imagen Portal Mineduc 3"
+        alt:t('mineduc.alt') + " 3"
     },
     {
         url:"img/projects/mineduc-4.webp",
-        alt:"Imagen Portal Mineduc 4"
+        alt:t('mineduc.alt') + " 4"
     },
     {
         url:"img/projects/mineduc-5.webp",
-        alt:"Imagen Portal Mineduc 5"
+        alt:t('mineduc.alt') + " 5"
     },
     {
         url:"img/projects/mineduc-6.webp",
-        alt:"Imagen Portal Mineduc 6"
+        alt:t('mineduc.alt') + " 6"
     }
 ];
 
 const cctvTime = [
     "06/2024",
-    "Actualidad"
+    "10/2024"
 ]
 const camarasTime = [
     "10/2024",
-    "Actualidad"
+    t('projects.time.active')
 ]
 const mineducTime = [
     "04/2024",
@@ -161,7 +167,7 @@ const mineducIcons = [
     <h1
         class="tittles"
     >
-        Proyectos
+        {t('projects.title')}
     </h1>
     <div class="projects">
         <div class="ml-[-40px] sm:ml-[-60px] md:ml-[-70px] w-min border border-gray-400 border-opacity-10 backdrop-brightness-125 rounded-lg hover:border-opacity-20">
@@ -178,12 +184,10 @@ const mineducIcons = [
             >
                 <div class="flex flex-col gap-4">
                     <p>
-                        Aplicación web <strong class="text-cyan-100">Ecommerce</strong> para la venta de productos según el
-                        cliente.
+                        <HTMLRenderer content={t('camaras.p1')} />
                     </p>
                     <p>
-                        Construida con <strong class="text-red-200">Angular 18</strong> para el Front End y <strong class="text-indigo-200">PHP</strong> para el
-                        Back End.
+                        <HTMLRenderer content={t('camaras.p2')} />
                     </p>
                     <ul class="list-disc list-inside mt-3">
                         <li>JWT</li>
@@ -191,6 +195,7 @@ const mineducIcons = [
                         <li>Experimental Zoneless</li>
                         <li>Signals</li>
                         <li>Tailwind</li>
+                        <li>{t('flow.integration')}</li>
                     </ul>
                 </div>
                 <div class="">
@@ -200,7 +205,7 @@ const mineducIcons = [
                         target="_blank"
                     >
                         <FaGithubSquare className="icons-links" />
-                        <p>Repositorio en GitHub</p>
+                        <p>{t('project.git')}</p>
                     </a>
                     <a
                         class="anchor"
@@ -208,7 +213,7 @@ const mineducIcons = [
                         target="_blank"
                     >
                         <FaExternalLinkAlt className="icons-links" />
-                        <p>Visitar</p>
+                        <p>{t('project.visit')}</p>
                     </a>
                 </div>
             </CardProject>
@@ -222,13 +227,10 @@ const mineducIcons = [
             >
                 <div class="flex flex-col gap-4">
                     <p>
-                        Aplicación web de tipo <strong class="text-slate-100">privada</strong> para <strong class="text-cyan-100">administrar y monitorear</strong>
-                        el estado de las cámaras de seguridad de diferentes
-                        clientes.
+                        <HTMLRenderer content={t('cctv.p1')} />
                     </p>
                     <p>
-                        Construida con <strong class="text-indigo-200">PHP</strong> en su totalidad, usando <strong class="text-sky-300">JQuery</strong> para hacer peticiones
-                        asíncronas al servidor
+                        <HTMLRenderer content={t('cctv.p2')} />
                     </p>
                     <ul class="list-disc list-inside mt-3">
                         <li>JQuery</li>
@@ -244,7 +246,7 @@ const mineducIcons = [
                         target="_blank"
                     >
                         <FaGithubSquare className="icons-links" />
-                        <p>Repositorio en GitHub</p>
+                        <p>{t('project.git')}</p>
                     </a>
                     <a
                         class="anchor"
@@ -252,7 +254,7 @@ const mineducIcons = [
                         target="_blank"
                     >
                         <FaExternalLinkAlt className="icons-links" />
-                        <p>Visitar</p>
+                        <p>{t('project.visit')}</p>
                     </a>
                 </div>
             </CardProject>
@@ -266,21 +268,14 @@ const mineducIcons = [
             >
                 <div class="flex flex-col gap-4">
                     <p>
-                        Proyecto para la asignatura <strong class="text-orange-200">Portafolio de Título</strong> de la
-                        carrera <strong class="text-pink-100">Analista Programador</strong>.
+                        <HTMLRenderer content={t('mineduc.p1')} />
                     </p>
                     <p>
-                        A modo de aprendizaje, desarrollé un <strong class="text-cyan-100">Portal web</strong> para los
-                        establecimientos estudiantiles de bajos recursos, donde pueden disfrutar de todas sus funciones en un solo lugar.
+                        <HTMLRenderer content={t('mineduc.p2')} />
                     </p>
                     <p>
-                        Desarrollado con el framework <strong class="text-emerald-100">Django 4</strong>, creando la api con
-                        <strong class="text-blue-200">Python</strong>. Front End con <strong class="text-orange-200">HTML</strong>, <strong class="text-sky-200">CSS</strong> y <strong class="text-yellow-200">JavaScript</strong> nativos.
+                        <HTMLRenderer content={t('mineduc.p3')} />
                     </p>
-                    <ul class="list-disc list-inside mt-3">
-                        <li>Python</li>
-                        <li>Moderno e Intuitivo</li>
-                    </ul>
                 </div>
                 <div class="">
                     <a
@@ -289,11 +284,11 @@ const mineducIcons = [
                         target="_blank"
                     >
                         <FaGithubSquare className="icons-links" />
-                        <p>Repositorio en GitHub</p>
+                        <p>{t('project.git')}</p>
                     </a>
                     <a class="anchor disabled" href="#">
                         <FaExternalLinkAlt className="icons-links" />
-                        <p>Visitar</p>
+                        <p>{t('project.visit')}</p>
                     </a>
                 </div>
             </CardProject>

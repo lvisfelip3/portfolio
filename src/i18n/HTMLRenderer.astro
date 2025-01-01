@@ -1,0 +1,13 @@
+---
+import DOMPurify from "isomorphic-dompurify";
+
+interface Props {
+    content: string;
+}
+
+const { content } = Astro.props;
+
+const sanitizedContent = DOMPurify.sanitize(content);
+---
+
+<Fragment set:html={sanitizedContent} />
