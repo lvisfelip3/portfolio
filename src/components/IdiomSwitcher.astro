@@ -18,10 +18,10 @@ const t = useTranslations(lang)
     </summary>
     <div class="flex flex-col gap-2 bg-gray-800 rounded-lg p-2">
     {
-        Object.entries(languages).map(([lang, label]) => (
+        Object.entries(languages).map(([langP, label]) => (
             <a 
-                href={ lang === defaultLanguage ? "/" : `/${lang}`}
-                class="anchor"
+                href={ langP === defaultLanguage ? "/" : `/${langP}`}
+                class={ langP === lang ? "anchor selectedLanguage" : "anchor" }
             >
                 {label}
             </a>
@@ -49,6 +49,7 @@ const t = useTranslations(lang)
 
     details {
         position: relative;
+        user-select: none;
     }
 
     details[open] > div {
