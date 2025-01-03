@@ -38,21 +38,60 @@ const { images } = Astro.props;
         width: '100%',
         autoplay: false,
         lazyLoad: 'nearby',
+        pagination: true,  // Explicitly enable pagination
+        arrows: true,      // Explicitly enable arrows
         breakpoints: {
             640: { perPage: 1 },
             768: { perPage: 1 },
             1024: { perPage: 1 },
         },
+        // Add rendering options
+        renderBullet: (_, className) => {
+            return `<button class="${className}"></button>`;
+        },
     };
 
-    document.addEventListener('astro:page-load', () => {
-        const splideElements = document.querySelectorAll('.splide');
+    let splideInstances: Splide[] = [];
 
+    function initializeSplide() {
+        // Clean up existing instances
+        destroySplide();
+
+        // Initialize new instances
+        const splideElements = document.querySelectorAll('.splide');
+        
         splideElements.forEach((element) => {
             if (element instanceof HTMLElement) {
+                // Create new instance
                 const splide = new Splide(element, options);
+                
+                // Mount the instance
                 splide.mount();
+                
+                // Force refresh the pagination
+                splide.refresh();
+                
+                // Store the instance
+                splideInstances.push(splide);
             }
         });
+    }
+
+    function destroySplide() {
+        splideInstances.forEach(splide => {
+            if (splide && typeof splide.destroy === 'function') {
+                splide.destroy(true); // true parameter ensures complete cleanup
+            }
+        });
+        splideInstances = [];
+    }
+
+    // Handle page transitions
+    document.addEventListener('astro:page-load', () => {
+        // Small delay to ensure DOM is fully updated
+        setTimeout(initializeSplide, 0);
     });
+
+    // Cleanup before transitions
+    document.addEventListener('astro:before-preparation', destroySplide);
 </script>
