@@ -36,6 +36,7 @@ export const ui = {
         'contact.form.name': 'Nombre',
         'contact.form.message': 'Mensaje',
         'contact.form.send': 'Enviar',
+        'contact.form.copied': 'Copiado al portapapeles',
     },
     en: {
         'nav.home': 'Home',
@@ -67,5 +68,6 @@ export const ui = {
         'contact.form.name': 'Name',
         'contact.form.message': 'Message',
         'contact.form.send': 'Submit',
+        'contact.form.copied': 'Copied to clipboard',
     }
 }
