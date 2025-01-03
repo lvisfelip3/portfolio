@@ -7,7 +7,7 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
-<section class="flex flex-col text-white w-full h-min mt-40">
+<section class="flex flex-col text-white w-full h-min mt-40" id="refSection">
     <h1 class="tittles">{t('references.title')}</h1>
     <CardReferences
         company="IArcos.cl"

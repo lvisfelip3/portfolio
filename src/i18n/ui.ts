@@ -37,7 +37,8 @@ export const ui = {
         'contact.form.message': 'Mensaje',
         'contact.form.send': 'Enviar',
         'contact.form.copied': 'Copiado al portapapeles',
-        'goTop': 'Ir al inicio'
+        'goTop': 'Ir al inicio',
+        'about.title': 'Sobre Mi',
     },
     en: {
         'nav.home': 'Home',
@@ -70,6 +71,7 @@ export const ui = {
         'contact.form.message': 'Message',
         'contact.form.send': 'Submit',
         'contact.form.copied': 'Copied to clipboard',
-        'goTop': 'Go to the top'
+        'goTop': 'Go to the top',
+        'about.title': 'About',
     }
 }

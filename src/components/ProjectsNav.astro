@@ -33,7 +33,7 @@
 </style>
 
 <script>
-    function initializeScroll() {
+    document.addEventListener("astro:page-load", () => {
         const button1 = document.querySelector(".button1");
         const button2 = document.querySelector(".button2");
         const button3 = document.querySelector(".button3");
@@ -91,12 +91,6 @@
         document.querySelectorAll(".project-section").forEach((section) => {
             observer.observe(section);
         });
-    }
-
-    initializeScroll();
-
-    document.addEventListener("astro:page-load", () => {
-        initializeScroll();
     });
 
 

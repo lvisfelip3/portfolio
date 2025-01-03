@@ -1,6 +1,6 @@
 ---
-import Button from "@components/Button.astro"
 import IdiomSwitcher from "@components/IdiomSwitcher.astro"
+import Logo from "@components/Logo.astro"
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url)
@@ -8,18 +8,29 @@ const t = useTranslations(lang)
 ---
 
 <nav class="fixed top-0 z-50 h-14 md:h-20 w-full flex justify-between items-center bg-transparent text-white transition duration-500 ease-out lg:px-[290px] md:px-32 sm:px-24 px-4">
-    <div></div>
+    <div>
+        <Logo />
+    </div>
     <div class="flex justify-center gap-2">
-        <Button text={t("nav.home")} />
-        <Button text={t("nav.projects")} />
-        <Button text={t("nav.contact")}/>
+        <button class="Navbutton" id="project-button"> {t("nav.projects")} </button>
+        <button class="Navbutton" id="ref-button"> {t("references.title")} </button>
+        <button class="Navbutton" id="contact-button"> {t("nav.contact")}</button>
+        <button class="Navbutton" id="about-button"> {t("about.title")}</button>
     </div>
     <IdiomSwitcher />
 </nav>
 
 <style>
+
+    .Navbutton {
+        @apply bg-transparent hover:bg-gray-400 active:bg-gray-100 hover:text-gray-950 active:text-gray-950 py-3 px-4 rounded-md transition-colors duration-150 text-sm md:text-base font-bold text-center
+    }
     .onScroll{
         @apply bg-gray-950 bg-opacity-90 border-b border-gray-400 border-opacity-25 backdrop-blur-sm;
+    }
+
+    .activeButton{
+        @apply bg-gray-100 text-gray-950
     }
 </style>
 
@@ -33,5 +44,33 @@ const t = useTranslations(lang)
             nav.classList.remove('onScroll');
             nav.classList.add('bg-transparent');
         }
+    });
+
+    document.addEventListener("astro:page-load", () => {
+        const projectButton = document.querySelector("#project-button");
+        const refButton = document.querySelector("#ref-button");
+        const contactButton = document.querySelector("#contact-button");
+        const aboutButton = document.querySelector("#about-button");
+
+        const scrollWithOffset = (element, offset = 0) => {
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: elementPosition + offset,
+                behavior: "smooth",
+            });
+        };
+
+        projectButton?.addEventListener("click", () => {
+            scrollWithOffset(document.querySelector("#projectSection"), -100);
+        });
+        refButton?.addEventListener("click", () => {
+            scrollWithOffset(document.querySelector("#refSection"), -100);
+        });
+        contactButton?.addEventListener("click", () => {
+            scrollWithOffset(document.querySelector("#contactSection"), -100);
+        });
+        aboutButton?.addEventListener("click", () => {
+            scrollWithOffset(document.querySelector("#projectSection"), -100);
+        });
     });
 </script>
