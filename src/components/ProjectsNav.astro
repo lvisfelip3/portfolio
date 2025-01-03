@@ -33,62 +33,70 @@
 </style>
 
 <script>
-    const button1 = document.querySelector(".button1");
-    const button2 = document.querySelector(".button2");
-    const button3 = document.querySelector(".button3");
+    function initializeScroll() {
+        const button1 = document.querySelector(".button1");
+        const button2 = document.querySelector(".button2");
+        const button3 = document.querySelector(".button3");
 
-    const scrollWithOffset = (element, offset = 0) => {
-        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-            top: elementPosition + offset,
-            behavior: "smooth",
+        const scrollWithOffset = (element, offset = 0) => {
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: elementPosition + offset,
+                behavior: "smooth",
+            });
+        };
+
+        button1.addEventListener("click", () => {
+            scrollWithOffset(document.querySelector("#proyecto1"), -100);
         });
-    };
 
-    button1.addEventListener("click", () => {
-        scrollWithOffset(document.querySelector("#proyecto1"), -100);
-    });
+        button2.addEventListener("click", () => {
+            scrollWithOffset(document.querySelector("#proyecto2"), -100);
+        });
 
-    button2.addEventListener("click", () => {
-        scrollWithOffset(document.querySelector("#proyecto2"), -100);
-    });
+        button3.addEventListener("click", () => {
+            scrollWithOffset(document.querySelector("#proyecto3"), -100);
+        });
 
-    button3.addEventListener("click", () => {
-        scrollWithOffset(document.querySelector("#proyecto3"), -100);
-    });
+        const options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.5
+        };
 
-    const options = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.5
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                if (entry.target.id === "proyecto1") {
-                    button1.classList.add("activeButton");
-                    button2.classList.remove("activeButton");
-                    button3.classList.remove("activeButton");
-                } else if (entry.target.id === "proyecto2") {
-                    button2.classList.add("activeButton");
-                    button1.classList.remove("activeButton");
-                    button3.classList.remove("activeButton");
-                } else if (entry.target.id === "proyecto3") {
-                    button3.classList.add("activeButton");
-                    button1.classList.remove("activeButton");
-                    button2.classList.remove("activeButton");
-                } else {
-                    button1.classList.remove("activeButton");
-                    button2.classList.remove("activeButton");
-                    button3.classList.remove("activeButton");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === "proyecto1") {
+                        button1.classList.add("activeButton");
+                        button2.classList.remove("activeButton");
+                        button3.classList.remove("activeButton");
+                    } else if (entry.target.id === "proyecto2") {
+                        button2.classList.add("activeButton");
+                        button1.classList.remove("activeButton");
+                        button3.classList.remove("activeButton");
+                    } else if (entry.target.id === "proyecto3") {
+                        button3.classList.add("activeButton");
+                        button1.classList.remove("activeButton");
+                        button2.classList.remove("activeButton");
+                    } else {
+                        button1.classList.remove("activeButton");
+                        button2.classList.remove("activeButton");
+                        button3.classList.remove("activeButton");
+                    }
                 }
-            }
-        });
-    }, options);
+            });
+        }, options);
 
-    document.querySelectorAll(".project-section").forEach((section) => {
-        observer.observe(section);
+        document.querySelectorAll(".project-section").forEach((section) => {
+            observer.observe(section);
+        });
+    }
+
+    initializeScroll();
+
+    document.addEventListener("astro:page-load", () => {
+        initializeScroll();
     });
 
 
