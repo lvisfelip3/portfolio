@@ -18,45 +18,81 @@ const t = useTranslations(lang)
         <span> { lang === "es" ? "o" : "or"} </span>
     </header>
     <main class="w-full md:px-56">
-        <form class="flex flex-col gap-4 w-full">
-            <label>{t('contact.form.name')}
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                />
-            </label>
-            <label>Email
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="example@email.com"
-                />
-            </label>
-            <label>{t('contact.form.message')}
-                <textarea
-                    id="message"
-                    name="message"
-                    rows="3"
-                ></textarea>
-            </label>
+        <form 
+            class="flex flex-col gap-4 w-full"
+            id="contactForm"
+            novalidate
+            >
+            <div class="form-group">
+                <label>{t('contact.form.name')}
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        minlength="3"
+                        class="w-full"
+                        aria-describedby="nameError"
+                    />
+                </label>
+                <span id="nameError" class="error-message rounded-lg py-1 text-red-300 font-semibold text-sm hide transition-all duration-200"></span>
+            </div>
+            <div class="form-group">
+                <label>Email
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@email.com"
+                        required
+                        minlength="3"
+                        class="w-full"
+                        aria-describedby="emailError"
+                    />
+                </label>
+                <span id="emailError" class="error-message rounded-lg py-1 text-red-300 font-semibold text-sm hide transition-all duration-200"></span>
+            </div>
+            <div class="form-group">
+                <label>{t('contact.form.message')}
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="3"
+                        required
+                        minlength="10"
+                        class="w-full"
+                        aria-describedby="messageError"
+                    ></textarea>
+                </label>
+                <span id="messageError" class="error-message rounded-lg py-1 text-red-300 font-semibold text-sm hide transition-all duration-200"></span>
+            </div>
             <button
                 type="submit"
-                class="p-2 bg-gray-400 text-gray-900 rounded-md hover:bg-gray-200 hover:text-gray-900 transition duration-150"
+                class="p-2 bg-gray-100 text-gray-900 rounded-md hover:bg-gray-300 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 {t('contact.form.send')}
             </button>
         </form>
     </main>
-    <footer></footer>
 </article>
 
-<span 
-    class="opacity-0 pointer-events-none left-1/2 translate-x-[-50%] fixed bottom-7 text-white rounded-lg p-2 bg-gray-700 font-medium text-center transition-all duration-300" 
+<span
+    class="opacity-0 pointer-events-none  bg-gray-700 alert"
     id="copied"
 >
     {t('contact.form.copied')}
+</span>
+<span
+    class="opacity-0 pointer-events-none bg-green-700 alert"
+    id="success"
+>
+    {t('contact.form.success')}
+</span>
+<span
+    class="opacity-0 pointer-events-none bg-red-700 alert"
+    id="error"
+>
+    {t('contact.form.error')}
 </span>
 
 <style>
@@ -68,24 +104,146 @@ const t = useTranslations(lang)
     input, textarea{
         @apply p-2 bg-gray-800 border-gray-400 rounded-lg  border-opacity-10 focus:border-opacity-10 transition-all duration-200;
     }
+
+    input:invalid, textarea:invalid {
+        @apply border-red-500 border-opacity-50;
+    }
+
+    .show {
+        @apply opacity-100 pointer-events-auto;
+    }
+
+    .hide {
+        @apply opacity-0 pointer-events-none;
+    }
+
+    .alert {
+        @apply left-1/2 translate-x-[-50%] fixed bottom-7 text-white rounded-lg p-2 font-medium text-center transition-all duration-300
+    }
 </style>
 
-<script>
-    document.addEventListener("astro:page-load", () => {
-        const emailCopy = document.querySelector("#emailCopy")
-        const copied = document.querySelector("#copied")
+<script define:vars={{ lang, translations: {
+    required: t('contact.form.required'),
+    invalidEmail: t('contact.form.invalidEmail')}}
+    }>
 
-        emailCopy.addEventListener("click", () => {
-            navigator.clipboard.writeText("luisfeipe.vera23@gmail.com")
+    function setupForm() {
 
-            copied?.classList.remove("opacity-0", "translate-y-2", "pointer-events-none")
-            copied?.classList.add("opacity-100", "translate-y-0")
+        const form = document.getElementById('contactForm');
+        const submitButton = form?.querySelector('button[type="submit"]');
+        const successMessage = document.getElementById('success');
+        const errorMessage = document.getElementById('error');
+
+        const emailCopy = document.querySelector("#emailCopy");
+        const copied = document.querySelector("#copied");
+
+        emailCopy?.addEventListener("click", () => {
+            navigator.clipboard.writeText("luisfeipe.vera23@gmail.com");
             
+            copied?.classList.remove("opacity-0", "translate-y-2", "pointer-events-none");
+            copied?.classList.add("opacity-100", "translate-y-0");
             
             setTimeout(() => {
-                copied?.classList.remove("opacity-100", "translate-y-0")
-                copied?.classList.add("opacity-0", "translate-y-2", "pointer-events-none")
-            }, 2000)
-        })
-    })
+                copied?.classList.remove("opacity-100", "translate-y-0");
+                copied?.classList.add("opacity-0", "translate-y-2", "pointer-events-none");
+            }, 2000);
+        });
+
+        const inputs = form?.querySelectorAll('input, textarea');
+        inputs?.forEach(input => {
+            input.addEventListener('input', () => {
+                validateInput(input);
+                checkFormValidity();
+            });
+
+            input.addEventListener('blur', () => {
+                validateInput(input);
+                checkFormValidity();
+            });
+        });
+
+        function validateInput(input) {
+            const errorElement = document.getElementById(`${input.id}Error`);
+            if (!errorElement) return;
+
+            if (!input.value) {
+                errorElement.textContent = translations.required;
+                errorElement.classList.remove('hide');
+                errorElement.classList.add('show');
+                return;
+            }
+
+            if (input.type === 'email' && !isValidEmail(input.value)) {
+                errorElement.textContent = translations.invalidEmail;
+                errorElement.classList.remove('hide');
+                errorElement.classList.add('show');
+                return;
+            }
+
+            if (input.minLength && input.value.length < input.minLength) {
+                errorElement.textContent = lang === 'es' ? `Mínimo ${ input.minLength } caracteres` : `Minimum ${ input.minLength  } characters`;
+                errorElement.classList.remove('hide');
+                errorElement.classList.add('show');
+                return;
+            }
+
+            errorElement.classList.add('hide');
+            errorElement.textContent = '';
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function checkFormValidity() {
+            const isValid = form?.checkValidity();
+            if (submitButton) {
+                submitButton.disabled = !isValid;
+            }
+        }
+
+        function showMessage(element, duration = 3000) {
+            if (!element) return;
+            
+            element.classList.remove("opacity-0", "translate-y-2", "pointer-events-none");
+            element.classList.add("opacity-100", "translate-y-0");
+            
+            setTimeout(() => {
+                element.classList.remove("opacity-100", "translate-y-0");
+                element.classList.add("opacity-0", "translate-y-2", "pointer-events-none");
+            }, duration);
+        }
+
+        form?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!form.checkValidity()) return;
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                submitButton.disabled = true;
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (!response.ok) throw new Error('Error en el envío');
+
+                showMessage(successMessage);
+                form.reset();
+            } catch (error) {
+                showMessage(errorMessage);
+                console.error('Error:', error);
+            } finally {
+                submitButton.disabled = false;
+            }
+        });
+    }
+
+    document.addEventListener('astro:page-load', setupForm);
 </script>

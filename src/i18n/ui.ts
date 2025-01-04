@@ -39,6 +39,10 @@ export const ui = {
         'contact.form.copied': 'Copiado al portapapeles',
         'goTop': 'Ir al inicio',
         'about.title': 'Sobre Mi',
+        'contact.form.success': 'El mensaje se ha enviado correctamente',
+        'contact.form.error': 'Hubo un error al enviar el mensaje',
+        'contact.form.required': 'El campo es obligatorio',
+        'contact.form.invalidEmail': 'El correo no es válido',
     },
     en: {
         'nav.home': 'Home',
@@ -73,5 +77,9 @@ export const ui = {
         'contact.form.copied': 'Copied to clipboard',
         'goTop': 'Go to the top',
         'about.title': 'About',
+        'contact.form.success': 'The message has been sent successfully',
+        'contact.form.error': 'There was an error sending the message',
+        'contact.form.required': 'The field is required',
+        'contact.form.invalidEmail': 'The email is not valid',
     }
 }
