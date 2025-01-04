@@ -43,6 +43,7 @@ export const ui = {
         'contact.form.error': 'Hubo un error al enviar el mensaje',
         'contact.form.required': 'El campo es obligatorio',
         'contact.form.invalidEmail': 'El correo no es válido',
+        'footer.text': 'Este portfolio fue desarrollado con'
     },
     en: {
         'nav.home': 'Home',
@@ -81,5 +82,6 @@ export const ui = {
         'contact.form.error': 'There was an error sending the message',
         'contact.form.required': 'The field is required',
         'contact.form.invalidEmail': 'The email is not valid',
+        'footer.text': 'This portfolio was developed with'
     }
 }
