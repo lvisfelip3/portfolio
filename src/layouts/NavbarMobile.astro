@@ -1,0 +1,115 @@
+---
+import { IoMenu } from "react-icons/io5";
+import IdiomSwitcher from "@components/IdiomSwitcher.astro"
+import Logo from "@components/Logo.astro"
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<nav id="mobileNav" class="fixed top-0 z-50 h-14 md:h-20 w-full flex md:hidden justify-between items-center bg-transparent text-white transition duration-500 ease-out lg:px-[290px] md:px-32 sm:px-24 px-4">
+    <button id="menu-toggle" aria-label="Toggle menu">
+        <IoMenu className="text-gray-100 w-8 h-8 hover:text-gray-900 hover:bg-slate-50 rounded-md transition-colors"/>
+    </button>
+    <div>
+        <Logo />
+    </div>
+</nav>
+<div id="menu-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity duration-300 opacity-0"></div>
+<div id="mobile-menu" class="fixed top-0 -left-full h-screen w-64 flex flex-col justify-evenly bg-gray-900 text-white z-50 border-r border-gray-400 border-opacity-10 transition-all duration-500 ease-in-out md:hidden">
+    <div class="flex flex-col p-6 h-full divide-y divide-gray-400 divide-opacity-10">
+        <button class="Navbutton" id="project-button-mobile">{t("nav.projects")}</button>
+        <button class="Navbutton" id="ref-button-mobile">{t("references.title")}</button>
+        <button class="Navbutton" id="contact-button-mobile">{t("nav.contact")}</button>
+        <button class="Navbutton" id="about-button-mobile">{t("about.title")}</button>
+    </div>
+    <IdiomSwitcher />
+</div>
+
+<style>
+    .Navbutton {
+        @apply bg-transparent hover:bg-gray-400 active:bg-gray-100 hover:text-gray-950 active:text-gray-950 py-5 px-4 rounded-md transition-colors duration-150 text-sm md:text-base font-bold w-full text-left
+    }
+    .onScroll {
+        @apply bg-gray-950 bg-opacity-90 border-b border-gray-400 border-opacity-25 backdrop-blur-sm;
+    }
+    .activeButton {
+        @apply bg-gray-100 text-gray-950
+    }
+    
+    .menu-open {
+        @apply left-0;
+    }
+    .backdrop-open {
+        @apply block opacity-100;
+    }
+</style>
+
+<script>
+    function setupMobileMenu() {
+        const menuToggle = document.querySelector('#menu-toggle');
+        const mobileMenu = document.querySelector('#mobile-menu');
+        const backdrop = document.querySelector('#menu-backdrop');
+        
+        menuToggle?.addEventListener('click', () => {
+            mobileMenu?.classList.toggle('menu-open');
+            backdrop?.classList.toggle('backdrop-open');
+            document.body.style.overflow = mobileMenu?.classList.contains('menu-open') ? 'hidden' : '';
+        });
+
+        backdrop?.addEventListener('click', () => {
+            mobileMenu?.classList.remove('menu-open');
+            backdrop?.classList.remove('backdrop-open');
+            document.body.style.overflow = '';
+        });
+    }
+
+    function setupScrollBehavior() {
+        const nav = document.querySelector('#mobileNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                nav?.classList.add('onScroll');
+                nav?.classList.remove('bg-transparent');
+            } else {
+                nav?.classList.remove('onScroll');
+                nav?.classList.add('bg-transparent');
+            }
+        });
+    }
+
+    function setupScrollToSections() {
+        const scrollWithOffset = (element, offset = 0) => {
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: elementPosition + offset,
+                behavior: "smooth",
+            });
+        };
+
+        const sections = {
+            'project-button-mobile': '#projectSection',
+            'ref-button-mobile': '#refSection',
+            'contact-button-mobile': '#contactSection',
+            'about-button-mobile': '#projectSection'
+        };
+
+        Object.entries(sections).forEach(([buttonId, sectionId]) => {
+            const button = document.querySelector(`#${buttonId}`);
+            const section = document.querySelector(sectionId);
+            
+            button?.addEventListener('click', () => {
+                scrollWithOffset(section, -100);
+                document.querySelector('#mobile-menu')?.classList.remove('menu-open');
+                document.querySelector('#menu-backdrop')?.classList.remove('backdrop-open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    document.addEventListener("astro:page-load", () => {
+        setupMobileMenu();
+        setupScrollBehavior();
+        setupScrollToSections();
+    });
+</script>
