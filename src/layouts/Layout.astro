@@ -20,7 +20,7 @@ const { currentLocale } = Astro;
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="relative">
+	<body class="relative h-full">
 		<slot />
 	</body>
 </html>
@@ -37,41 +37,6 @@ const { currentLocale } = Astro;
 
 	.tittles {
 		@apply text-4xl md:text-6xl p-8 text-white font-bold text-center backdrop-brightness-125 border border-gray-400 border-opacity-10 rounded-lg borderCard !mb-10
-	}
-
-	@font-face {
-		font-family: "Nunito";
-		font-style: normal;
-		font-weight: 400;
-		src: url('/font/Nunito-Regular.woff2');
-	}
-
-	@font-face {
-		font-family: "Nunito";
-		font-style: normal;
-		font-weight: 500;
-		src: url('/font/Nunito-Medium.woff2');
-	}
-
-	@font-face {
-		font-family: "Nunito";
-		font-style: normal;
-		font-weight: 700;
-		src: url('/font/Nunito-Bold.woff2');
-	}
-
-	@font-face {
-		font-family: "Nunito";
-		font-style: normal;
-		font-weight: 800;
-		src: url('/font/Nunito-ExtraBold.woff2');
-	}
-
-	@font-face {
-		font-family: "Nunito";
-		font-style: normal;
-		font-weight: 900;
-		src: url('/font/Nunito-Black.woff2');
 	}
 	@font-face {
 		font-family: "Montserrat";
