@@ -1,76 +1,76 @@
 ---
 import { IoLanguage } from "react-icons/io5";
 import { languages, defaultLanguage } from "@/i18n/ui";
-
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
-<details 
-    name="idiom" 
-    id="idiom"
-    class="bg-transparent p-3 flex flex-col gap-2 cursor-pointer w-min"
+
+<div class="relative w-min p-6 md:p-0" data-idiom-container>
+    <button
+        class="idiom-button flex gap-2 justify-between items-center rounded-lg px-2 border border-gray-400 border-opacity-30 hover:border-opacity-50 transition-all duration-200"
+        aria-expanded="false"
+        aria-controls="idiom-dropdown"
     >
-    <summary class="flex gap-2 justify-between items-center rounded-lg px-2 borderSelect">
         <IoLanguage className="text-gray-100 w-8 h-8 sm:w-9 sm:h-9 p-1 rounded-lg" />
         <span class="sr-only sm:not-sr-only">{t("nav.idiom")}</span>
-    </summary>
-    <div class="flex flex-col gap-2 bg-gray-800 rounded-lg p-2">
-    {
-        Object.entries(languages).map(([langP, label]) => (
-            <a 
-                href={ langP === defaultLanguage ? "/" : `/${langP}`}
-                class={ langP === lang ? "anchor selectedLanguage" : "anchor" }
+    </button>
+
+    <div
+        class="idiom-dropdown mb-1 md:mt-1 md:mb-0 absolute w-full bg-gray-800 flex flex-col gap-1 rounded-lg py-2 opacity-0 invisible transition-all duration-300 ease-in-out z-[9999]
+        md:top-full md:bottom-auto translate-y-2 top-auto bottom-full md:-translate-y-2"
+    >
+        {Object.entries(languages).map(([langP, label]) => (
+            <a
+                href={langP === defaultLanguage ? "/" : `/${langP}`}
+                class={`block text-base hover:bg-gray-100 hover:text-gray-900 p-2 w-full transition-all duration-200
+                ${langP === lang ? "bg-gray-600 text-white" : ""}`}
             >
                 {label}
             </a>
-        ))
-    }
+        ))}
     </div>
-</details>
+</div>
 
 <style>
-    option{
-        @apply bg-gray-900 p-3
+    .dropdown-open {
+        @apply opacity-100 visible translate-y-0;
     }
 
-    .selectedLanguage {
-        @apply bg-gray-600 text-white
-    }
-
-    .borderSelect{
-        @apply border border-gray-400 border-opacity-30 hover:border-opacity-50 transition-all duration-200
-    }
-
-    .anchor {
-        @apply text-sm sm:text-base hover:bg-gray-100 hover:text-gray-900 p-1 sm:p-2 rounded-lg transition-all duration-200;
-    }
-
-    details {
-        position: relative;
-        user-select: none;
-    }
-
-    details[open] > div {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        z-index: 9999;
+    .idiom-button {
+        @apply min-h-14;
     }
 </style>
 
 <script>
     document.addEventListener("astro:page-load", () => {
-        const detailsElement: HTMLDetailsElement = document.querySelector("#idiom");
+        const containers = document.querySelectorAll("[data-idiom-container]");
 
-        document.addEventListener("click", (event) => {
-            const target = event.target as HTMLDetailsElement;
+        containers.forEach((container) => {
+            const button = container.querySelector(".idiom-button");
+            const dropdown = container.querySelector(".idiom-dropdown");
 
-            if (!detailsElement.contains(target)) {
-                detailsElement.open = false;
-            }
+            button?.addEventListener("click", () => {
+                const isExpanded = button.getAttribute("aria-expanded") === "true";
+                button.setAttribute("aria-expanded", (!isExpanded).toString());
+                dropdown?.classList.toggle("dropdown-open");
+            });
+
+            document.addEventListener("click", (event) => {
+                const target = event.target as HTMLElement;
+                if (!container.contains(target)) {
+                    button?.setAttribute("aria-expanded", "false");
+                    dropdown?.classList.remove("dropdown-open");
+                }
+            });
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    button?.setAttribute("aria-expanded", "false");
+                    dropdown?.classList.remove("dropdown-open");
+                }
+            });
         });
     });
 </script>

@@ -17,12 +17,11 @@ const t = useTranslations(lang)
     </div>
 </nav>
 <div id="menu-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity duration-300 opacity-0"></div>
-<div id="mobile-menu" class="fixed top-0 -left-full h-screen w-64 flex flex-col justify-evenly bg-gray-900 text-white z-50 border-r border-gray-400 border-opacity-10 transition-all duration-500 ease-in-out md:hidden">
+<div id="mobile-menu" class="fixed top-0 -left-full h-screen w-64 flex flex-col justify-evenly bg-gray-900 text-white z-50 border-r border-gray-400 border-opacity-10 transition-all duration-500 ease-in-out md:hidden pointer-events-auto">
     <div class="flex flex-col p-6 h-full divide-y divide-gray-400 divide-opacity-10">
         <button class="Navbutton" id="project-button-mobile">{t("nav.projects")}</button>
         <button class="Navbutton" id="ref-button-mobile">{t("references.title")}</button>
         <button class="Navbutton" id="contact-button-mobile">{t("nav.contact")}</button>
-        <button class="Navbutton" id="about-button-mobile">{t("about.title")}</button>
     </div>
     <IdiomSwitcher />
 </div>
@@ -90,8 +89,7 @@ const t = useTranslations(lang)
         const sections = {
             'project-button-mobile': '#projectSection',
             'ref-button-mobile': '#refSection',
-            'contact-button-mobile': '#contactSection',
-            'about-button-mobile': '#projectSection'
+            'contact-button-mobile': '#contactSection'
         };
 
         Object.entries(sections).forEach(([buttonId, sectionId]) => {
