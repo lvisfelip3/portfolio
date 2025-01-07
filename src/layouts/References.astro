@@ -1,5 +1,7 @@
 ---
 import CardReferences from "@components/CardReferences.astro"
+import HTMLRenderer from "@/i18n/HTMLRenderer.astro";
+import { FaQuoteLeft } from "react-icons/fa";
 
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
@@ -22,6 +24,9 @@ const t = useTranslations(lang)
             companyLink: "https://iarcos.cl/empresa/"
         }}
     >
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sed laboriosam amet voluptatum voluptatem quis rerum nihil debitis nostrum ratione, doloribus mollitia praesentium, temporibus voluptates quidem voluptatibus aspernatur autem vitae.</p>
+        <p>
+            <FaQuoteLeft className="inline mt-[-10px]"/>
+            <HTMLRenderer content={t('references.1.p')} />
+        </p>
     </CardReferences>
 </section>

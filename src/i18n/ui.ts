@@ -38,12 +38,12 @@ export const ui = {
         'contact.form.send': 'Enviar',
         'contact.form.copied': 'Copiado al portapapeles',
         'goTop': 'Ir al inicio',
-        'about.title': 'Sobre Mi',
         'contact.form.success': 'El mensaje se ha enviado correctamente',
         'contact.form.error': 'Hubo un error al enviar el mensaje',
         'contact.form.required': 'El campo es obligatorio',
         'contact.form.invalidEmail': 'El correo no es válido',
-        'footer.text': 'Este portfolio fue desarrollado con'
+        'footer.text': 'Este portfolio fue desarrollado con',
+        'references.1.p': "Durante su tiempo como desarrollador independiente en mi equipo, demostró excepcional capacidad de <strong class='text-cyan-100'>adaptación</strong> y <strong class='text-red-100'>autonomía</strong>. Su consistente entrega de resultados de alta calidad y su habilidad para proponer soluciones creativas fueron fundamentales para el éxito de nuestros proyectos. Un <strong class='text-blue-100'>profesional</strong> verdaderamente <strong>comprometido</strong> con la excelencia."
     },
     en: {
         'nav.home': 'Home',
@@ -77,11 +77,11 @@ export const ui = {
         'contact.form.send': 'Submit',
         'contact.form.copied': 'Copied to clipboard',
         'goTop': 'Go to the top',
-        'about.title': 'About',
         'contact.form.success': 'The message has been sent successfully',
         'contact.form.error': 'There was an error sending the message',
         'contact.form.required': 'The field is required',
         'contact.form.invalidEmail': 'The email is not valid',
-        'footer.text': 'This portfolio was developed with'
+        'footer.text': 'This portfolio was developed with',
+        'references.1.p': "During his time as a freelance developer on my team, he demonstrated exceptional <strong class='text-cyan-100'>adaptability</strong> and <strong class='text-red-100'>autonomy</strong>. His consistent delivery of high-quality results and ability to propose creative solutions were key to the success of our projects. A <strong class='text-blue-100'>professional</strong> truly <strong>committed</strong> to excellence."
     }
 }
